@@ -1,0 +1,19 @@
+h1 { color: darkred;
+    font-size: 40px;
+}
+
+h2 { color: darkred;
+    font-size: 20px;
+}
+
+a { color:brown; 
+}
+
+body {
+    background: #f4f4f4;
+}
+
+#demo{
+    font-size: 40px;
+    color: darkblue;
+}
