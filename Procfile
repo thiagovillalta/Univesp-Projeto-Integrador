@@ -1,1 +1,0 @@
-web: gnicorn app:app 
