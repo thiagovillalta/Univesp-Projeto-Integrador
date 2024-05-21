@@ -14,7 +14,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 app = Flask(__name__)
 # Add Database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a.oregon-postgres.render.com/controldb_w100'
 app.config['SECRET_KEY'] = "my super secret key"
 
 # initialize the database
@@ -121,7 +121,7 @@ def delete_post(id):
     try:
         db.session.delete(post_to_delete)
         db.session.commit()
-        flash ("Blog Post Was Deleted!")
+        flash ("Post Was Deleted!")
 
         # Grab all the posts from the database
         posts = Posts.query.filter(Posts.poster_id == current_user.id)
@@ -191,7 +191,7 @@ def add_post():
         db.session.commit()
 
         #Return a Message
-        flash("Blog Post Successfully!")
+        flash("Post Successfully!")
 
     # Redirect to the webpage
     return render_template("add_post.html", form = form)
@@ -259,7 +259,7 @@ class UserForm(FlaskForm):
     submit = SubmitField("Submit")
 
 #Updade Database Record
-@app.route('/updade/<int:id>', methods =['GET', 'POST'])
+@app.route('/update/<int:id>', methods =['GET', 'POST'])
 
 def update(id):
     form = UserForm()
@@ -272,16 +272,16 @@ def update(id):
         try:
             db.session.commit()
             flash("User Update Successfully!")
-            return render_template("updade.html",
+            return render_template("update.html",
                     form = form,
-                    name_to_update = name_to_update)
+                    name_to_update = name_to_update, id = current_user.id)
         except: 
             flash("Error There was a problem... Try again!")
-            return render_template("updade.html",
+            return render_template("update.html",
                     form = form,
                     name_to_update=name_to_update)
     else: 
-        return render_template("updade.html",
+        return render_template("update.html",
                 form = form,
                 name_to_update=name_to_update,
                 id = id)   
