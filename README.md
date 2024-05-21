@@ -4,4 +4,4 @@ Flask-Login
 Flask-SQLAlchemy
 Flask-WTF
 
-SQLAlchmy relationship
+SQLAlchemy relationship
