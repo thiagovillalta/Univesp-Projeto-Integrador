@@ -73,8 +73,8 @@ def dashboard():
     if request.method == "POST":
         name_to_update.name = request.form['name']
         name_to_update.email = request.form['email']
-        name_to_update.favorite_color = request.form['favorite_color']
         name_to_update.username = request.form['username']
+        
         try:
             db.session.commit()
             flash("User Update Successfully!")
@@ -165,9 +165,7 @@ def edit_post(id):
         return redirect(url_for('post', id=post.id))
     
     form.title.data = post.title
-    """ #form.author.data = post.author
-    form.slug.data = post.slug
-    form.content.data = post.content """
+
 
     return render_template ("edit_post.html", form=form)
 
@@ -182,9 +180,6 @@ def add_post():
 
         #Clear de Form
         form.title.data= ''
-        """ form.content.data= ''
-        #form.author.data=''
-        form.slug.data='' """
 
         # Add post data to database
         db.session.add(post)
@@ -266,9 +261,9 @@ def update(id):
     name_to_update = Users.query.get_or_404(id)
     if request.method == "POST":
         name_to_update.name = request.form['name']
-        name_to_update.email = request.form['email']
-        #name_to_update.favorite_color = request.form['favorite_color']
+        name_to_update.email = request.form['email']      
         name_to_update.username = request.form['username']
+        
         try:
             db.session.commit()
             flash("User Update Successfully!")
@@ -313,8 +308,7 @@ def add_user():
         name = form.name.data
         form.name.data = ''
         form.username.data = ''
-        form.email.data = ''
-        #form.favorite_color.data = ''
+        form.email.data = ''      
         form.password_hash.data = ''
 
         flash("User Added Successful")
