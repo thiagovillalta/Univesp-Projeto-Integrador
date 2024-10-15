@@ -14,7 +14,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 app = Flask(__name__)
 # Add Database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a/controldb_w100'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a/controldb_w100'
 app.config['SECRET_KEY'] = "my super secret key"
 
 # initialize the database
