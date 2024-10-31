@@ -9,12 +9,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from wtforms.widgets import TextArea
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+import os
+
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(os.path.join(project_dir, 'users.db'))
 
 #create a Flask Instance
 app = Flask(__name__)
 # Add Database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = database_file
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a/controldb_w100'
 app.config['SECRET_KEY'] = "my super secret key"
 
