@@ -9,6 +9,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from wtforms.widgets import TextArea
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 #create a Flask Instance
 app = Flask(__name__)
@@ -16,9 +19,9 @@ app = Flask(__name__)
 # Add Database
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin@localhost/our_users'
-app.config['SECRET_KEY'] = "my super secret key"
+#app.config['SECRET_KEY'] = "my super secret key"
 #postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a.oregon-postgres.render.com/controldb_w100
 # initialize the database
 db = SQLAlchemy(app)
