@@ -189,8 +189,9 @@ def verificar_rfid():
 
     rfid_tag = data['rfid_tag']
     usuario = Users.query.filter_by(rfid_tag=rfid_tag).first()
-    poster = usuario.id
+    
     if usuario:
+        poster = usuario.id
         novo_registro = Posts(rfid_tag=rfid_tag, poster_id = poster)
         db.session.add(novo_registro)
         db.session.commit()
