@@ -408,7 +408,8 @@ def test_pw():
         passed = passed,
         form = form)
 
-
+with app.app_context():
+    db.create_all()
 
 
 if __name__ == '__main__':
