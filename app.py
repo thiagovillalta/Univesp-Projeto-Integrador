@@ -17,8 +17,10 @@ app = Flask(__name__)
 # Add Database
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  # Conexão com o PostgreSQL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Desabilita modificações de rastreamento do SQLAlchemy
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')  # Chave secreta segura para CSRF e sessões
+
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin@localhost/our_users'
 #app.config['SECRET_KEY'] = "my super secret key"
 #postgres://controldb_w100_user:QJ6GBX6yr8S4n8SmaDk4nAFsrvIbGE5l@dpg-cp35n4vsc6pc73fjl61g-a.oregon-postgres.render.com/controldb_w100
